@@ -9,3 +9,8 @@ class MainPage(BasePage):
 
     def should_be_login_link(self):
         assert self.is_element_present(*MainPageLocators.LOGIN_LINK), "Login link is not presented"
+
+    def open_book_page(self):
+        books_link = self.browser.find_element(*MainPageLocators.BOOKS_LINK)
+        books_link.click()
+
