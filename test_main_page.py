@@ -30,4 +30,12 @@ def test_guest_can_add_product_to_basket(browser):
     product_page = ProductPage(browser, browser.current_url)
     product_page.product_page_is_opened()
     product_title = product_page.get_product_title()
+    product_price = product_page.get_product_price()
     product_page.add_product_to_basket()
+    product_page.should_be_notifications()
+    product_title_notification = product_page.get_product_title_from_notifications()
+    product_price_notification = product_page.get_product_price_from_notifications()
+    assert product_title == product_title_notification, \
+    f"Product title in notifications {product_title_notification} differs from {product_title}"
+    assert product_price == product_price_notification, \
+        f"Product title in notifications {product_price_notification} differs from {product_price}"

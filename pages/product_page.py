@@ -17,8 +17,13 @@ class ProductPage(BasePage):
         product_price = self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE).text
         return product_price
 
-    def should_be_product_title_notification(self):
-        pass
+    def should_be_notifications(self):
+        assert self.is_element_present(*ProductPageLocators.NOTIFICATION), "There are no notifications"
 
-    def should_be_product_price_notification(self):
-        pass
+    def get_product_title_from_notifications(self):
+        product_title_notifications = self.browser.find_elements(*ProductPageLocators.NOTIFICATION)[0].text
+        return product_title_notifications
+
+    def get_product_price_from_notifications(self):
+        product_price_notifications = self.browser.find_elements(*ProductPageLocators.NOTIFICATION)[-1].text
+        return product_price_notifications
