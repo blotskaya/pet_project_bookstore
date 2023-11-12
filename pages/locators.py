@@ -14,6 +14,7 @@ class ProductPageLocators():
     NOTIFICATION = (By.XPATH, '//div[@class="alertinner "]//strong')
     PRODUCT_TITLE = (By.XPATH, '//div[contains(@class,"product_main")]/h1')
     PRODUCT_PRICE = (By.XPATH, '//div[contains(@class,"product_main")]/p[@class="price_color"]')
+    UNAVAILABILITY_ALERT = (By.CSS_SELECTOR, '#alert_form')
 
-class CategoryPageLocators():
+class ProductCardComponentLocators():
     PRODUCT_LINK = (By.XPATH, '//article[@class="product_pod"]//h3/a')
