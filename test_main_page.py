@@ -4,28 +4,30 @@ from pages.category_page import CategoryPage
 from pages.product_page import ProductPage
 from pages.product_card_component import ProductCardComponent
 from pytest import skip
+from pages.decorators import registered_user
 
 def test_guest_should_see_login_link(browser, base_url):
-    page = MainPage(browser, base_url)
-    page.open()
+    page = MainPage(browser)
+    page.open(base_url)
     page.should_be_login_link()
 
 def test_guest_can_go_to_login_page(browser, base_url):
-    page = MainPage(browser, base_url)
-    page.open()
+    page = MainPage(browser)
+    page.open(base_url)
     page.go_to_login_page()
-    login_page = LoginPage(browser, browser.current_url)
+    login_page = LoginPage(browser)
     login_page.should_be_login_page()
 
+@registered_user
 def test_guest_can_add_product_to_basket(browser, base_url):
-    page = MainPage(browser, base_url)
-    page.open()
+    page = MainPage(browser)
+    page.open(base_url)
     page.open_book_page()
-    category_page = CategoryPage(browser, browser.current_url)
+    category_page = CategoryPage(browser)
     category_page.should_be_category_url()
-    product_card_component = ProductCardComponent(browser, browser.current_url)
+    product_card_component = ProductCardComponent(browser)
     product_card_component.go_to_product()
-    product_page = ProductPage(browser, browser.current_url)
+    product_page = ProductPage(browser)
     product_page.product_page_is_opened()
     product_title = product_page.get_product_title()
     if product_page.is_product_unavailable():
