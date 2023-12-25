@@ -11,6 +11,6 @@ def registered_user(func):
         page.open(base_url)
         page.go_to_login_page()
         login_page = LoginPage(browser)
-        login_page.login()
+        login_page.login(browser)
         func(browser, base_url)
     return wrapper
