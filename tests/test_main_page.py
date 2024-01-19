@@ -1,10 +1,11 @@
-from pages.main_page import MainPage
-from pages.login_page import LoginPage
-from pages.category_page import CategoryPage
-from pages.product_page import ProductPage
-from pages.product_card_component import ProductCardComponent
 from pytest import skip
-from pages.decorators import registered_user
+from ..pages.main_page import MainPage
+from ..pages.login_page import LoginPage
+from ..pages.category_page import CategoryPage
+from ..pages.product_page import ProductPage
+from ..pages.product_card_component import ProductCardComponent
+from ..pages.decorators import registered_user
+import allure
 
 def test_guest_should_see_login_link(browser, base_url):
     page = MainPage(browser)
@@ -18,6 +19,7 @@ def test_guest_can_go_to_login_page(browser, base_url):
     login_page = LoginPage(browser)
     login_page.should_be_login_page()
 
+@allure.title("Add product to basket")
 @registered_user
 def test_guest_can_add_product_to_basket(browser, base_url):
     page = MainPage(browser)
