@@ -7,11 +7,13 @@ from ..pages.product_card_component import ProductCardComponent
 from ..pages.decorators import registered_user
 import allure
 
+@allure.title("Login link is visible")
 def test_guest_should_see_login_link(browser, base_url):
     page = MainPage(browser)
     page.open(base_url)
     page.should_be_login_link()
 
+@allure.title("Go to login page")
 def test_guest_can_go_to_login_page(browser, base_url):
     page = MainPage(browser)
     page.open(base_url)

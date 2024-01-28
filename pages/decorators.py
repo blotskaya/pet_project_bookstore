@@ -1,7 +1,6 @@
 from .main_page import MainPage
 from .login_page import LoginPage
 from functools import wraps
-from .locators import LoginPageLocators
 
 
 def registered_user(func):

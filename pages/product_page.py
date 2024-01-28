@@ -1,5 +1,6 @@
 from .base_page import BasePage
 from .locators import ProductPageLocators
+import allure
 
 class ProductPage(BasePage):
     def product_page_is_opened(self):
@@ -10,16 +11,19 @@ class ProductPage(BasePage):
         """Возвращает видимость уведомления о недоступности продукта"""
         return self.is_element_present(*ProductPageLocators.UNAVAILABILITY_ALERT)
 
+    @allure.step("Add product to basket")
     def add_product_to_basket(self):
         """Добавляет продукт в корзину"""
         add_to_basket_button = self.browser.find_element(*ProductPageLocators.ADD_TO_BASKET)
         add_to_basket_button.click()
 
+    @allure.step("Get product title")
     def get_product_title(self):
         """Возвращает тайтл продукта"""
         product_title = self.browser.find_element(*ProductPageLocators.PRODUCT_TITLE).text
         return product_title
 
+    @allure.step("Get product price")
     def get_product_price(self):
         """Возвращает цену продукта"""
         product_price = self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE).text
@@ -29,11 +33,13 @@ class ProductPage(BasePage):
         """Возвращает видимость уведомления о добавлении продукта в корзину"""
         assert self.is_element_present(*ProductPageLocators.NOTIFICATION), "There are no notifications"
 
+    @allure.step("Get product title from notifications")
     def get_product_title_from_notifications(self):
         """Возвращает тайтл продукта из уведомления о добавлении продукта в корзину"""
         product_title_notifications = self.browser.find_elements(*ProductPageLocators.NOTIFICATION)[0].text
         return product_title_notifications
 
+    @allure.step("Get product price from notifications")
     def get_product_price_from_notifications(self):
         """Возвращает цену продукта из уведомления о добавлении продукта в корзину"""
         product_price_notifications = self.browser.find_elements(*ProductPageLocators.NOTIFICATION)[-1].text
